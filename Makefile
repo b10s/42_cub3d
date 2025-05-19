@@ -13,7 +13,8 @@ MLX = -L$(MLX_DIR) -lmlx -lXext -lX11
 INC_DIR = includes
 SRC_DIR = src
 SRC_FILES = main.c \
-parse/parse_map.c
+parse/parse_map.c \
+parse/check_map_file.c \
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
