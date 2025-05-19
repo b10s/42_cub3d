@@ -2,18 +2,23 @@
 # define CUB3D_H
 
 # include <stdio.h>
+# include <stdbool.h>
+#include <fcntl.h>
+#include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 # include "../Libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
 
 # define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 600
 # define WINDOW_TITLE "cub3D"
+
+#define FAILURE 1
+#define SUCCESS 0
 
 /* キーコード定義 (MacOSとLinuxで異なる場合があります) */
 # ifdef __APPLE__
@@ -60,6 +65,9 @@ typedef struct s_game
 	void	*win;           /* ウィンドウポインタ */
 	t_map	map;            /* マップ情報 */
 }	t_game;
+
+
+int check_map_file(char *arg, bool cub);
 
 /* 関数プロトタイプ */
 /* マップパース関連 */
