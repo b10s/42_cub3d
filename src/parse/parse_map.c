@@ -1,8 +1,4 @@
 #include "../../includes/cub3d.h"
-
-/**
- * マップ構造体を初期化する
- */
 static void	init_map(t_map *map)
 {
 	map->grid = NULL;
@@ -27,31 +23,33 @@ static void	init_map(t_map *map)
 int	parse_map(t_game *game, char *map_path)
 {
 	int	fd;
-	
-	// 拡張子チェック (.cub)
-	if (map_path == NULL || 
-		(map_path[0] == '\0') || 
-		(ft_strncmp(map_path + ft_strlen(map_path) - 4, ".cub", 4) != 0))
-	{
-		printf("Error\nInvalid map file extension. Must be .cub\n");
-		return (1);
-	}
+	int is_mapfile;
 	
 	// ファイルの存在確認
+	is_mapfile =check_map_file(map_path, true);
+	if (is_mapfile != SUCCESS)
+	return (FAILURE);
+
+	// TODO: ファイル内容を1行ずつ読み取り、保存する処理を実装する
+	parse_map_format(map_path);
+
+	// TODO: 読み取った内容を構造体に分類・保存する処理を実装する
+	// TODO: マップ構造の正しさチェック
+	// TODO: テクスチャの設定チェック
+	// TODO: プレイヤーの位置と向きの初期化
+
+
 	fd = open(map_path, O_RDONLY);
-	if (fd < 0)
+	if (fd == -1)
 	{
-		printf("Error\nCannot open map file: %s\n", map_path);
-		return (1);
-	}
-	
+		printf("Error\n%s: No such file or directory\n", map_path);
+		return (FAILURE);
+	}	
 	// マップ構造体の初期化
 	init_map(&game->map);
 	
 	// ファイルを閉じる
 	close(fd);
-	
-	// ここから本格的なパース処理を実装予定
 	printf("Map file found and valid: %s\n", map_path);
 	
 	return (0);
