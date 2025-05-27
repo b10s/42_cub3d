@@ -11,6 +11,7 @@
 # include <unistd.h>
 # include <math.h>
 # include "../Libft/include/libft.h"
+# include "../get_next_line/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 
 # define WINDOW_WIDTH 1200
@@ -72,6 +73,7 @@ int check_map_file(char *arg, bool cub);
 /* 関数プロトタイプ */
 /* マップパース関連 */
 int		parse_map(t_game *game, char *map_path);
+int	parse_map_format(char *map_path);
 
 /* キーボード操作 */
 int		key_press(int keycode, t_game *game);
