@@ -6,11 +6,15 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:45:06 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2025/05/27 23:13:02 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2025/05/27 23:53:17 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/get_next_line.h"
+#include "../../Libft/include/libft.h"
+#include <limits.h>
+#include <fcntl.h>
+#include <sys/resource.h>
 
 static char	*release_memory_buffer(char *buffer)
 {
@@ -85,7 +89,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE >= INT_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
 	buffer = malloc(sizeof(char) * (size_t)(BUFFER_SIZE + 1));
 	if (buffer == NULL)
