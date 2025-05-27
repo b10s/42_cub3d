@@ -31,7 +31,7 @@ int	parse_map(t_game *game, char *map_path)
 	return (FAILURE);
 
 	// TODO: ファイル内容を1行ずつ読み取り、保存する処理を実装する
-	parse_map_format(map_path);
+	//parse_map_format(map_path);
 
 	// TODO: 読み取った内容を構造体に分類・保存する処理を実装する
 	// TODO: マップ構造の正しさチェック
