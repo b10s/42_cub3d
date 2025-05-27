@@ -15,6 +15,9 @@ SRC_DIR = src
 SRC_FILES = main.c \
 parse/parse_map.c \
 parse/check_map_file.c \
+utils/get_next_line.c \
+utils/get_next_line_utils.c \
+utils/gnl.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
