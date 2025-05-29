@@ -23,8 +23,8 @@ void add_line(t_map_data *data, char *line)
         data->lines = new_lines;
     }
     
-    // 行を追加
-    data->lines[data->line_count++] = line;
+    // 行を追加（複製を作成）
+    data->lines[data->line_count++] = ft_strdup(line);
 }
 
 void free_map_data(t_map_data *data)
