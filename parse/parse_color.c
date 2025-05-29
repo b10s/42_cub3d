@@ -12,7 +12,6 @@ bool parse_rgb_to_color(char *rgb_str, t_color *color)
  if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
  {
      free_split(rgb);
-     free_split(rgb);
      return (false);
  }
 
