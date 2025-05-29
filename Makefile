@@ -1,61 +1,50 @@
-NAME = cub3D
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+# NAME = cub3D
+# CC = cc
+# CFLAGS = -Wall -Wextra -Werror
 
-LIBFT_DIR = ./Libft/
-LIBFT = $(LIBFT_DIR)libft
-LDFLAGS = -L$(LIBFT_DIR)
+# LIBFT_DIR = ./Libft/
+# LIBFT = $(LIBFT_DIR)libft
+# LDFLAGS = -L$(LIBFT_DIR)
 
-MLX_DIR = ./minilibx-linux/
-MLX_LIB = $(MLX_DIR)libmlx.a
-MLX = -L$(MLX_DIR) -lmlx -lXext -lX11
+# MLX_DIR = ./minilibx-linux/
+# MLX_LIB = $(MLX_DIR)libmlx.a
+# MLX = -L$(MLX_DIR) -lmlx -lXext -lX11
 
-INC_DIR = includes
-SRC_DIR = 
-SRC_FILES = main.c \
-parse/parse_map.c \
-parse/check_map_file.c \
-parse/parse_main.c \
-parse/parse_file.c \
-parse/parse_texture.c \
-parse/parse_color.c \
-validate/validate_format.c \
-validate/validate_map.c \
-validate/validate_player.c \
-utils/get_next_line.c \
-utils/get_next_line_utils.c \
-utils/memory_utils.c \
-utils/string_utils.c \
+# INC_DIR = includes
+# SRC_DIR = 
+# SRC_FILES = main.c \
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+# SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+# OBJS = $(SRCS:.c=.o)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(MLX) $(LIBFT)
+# all: $(NAME)
 
-$(LIBFT): 
-	make -C $(LIBFT_DIR) 
+# $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
+# 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(MLX) $(LIBFT)
 
-$(MLXLIB):
-	make -C $(MLX_DIR)
+# $(LIBFT): 
+# 	make -C $(LIBFT_DIR) 
 
-%.o: %.c
-	$(CC) $(CFLAGS) -Iincludes -c $< -o $@
+# $(MLXLIB):
+# 	make -C $(MLX_DIR)
 
-clean:
-	rm -f $(OBJS)
+# %.o: %.c
+# 	$(CC) $(CFLAGS) -Iincludes -c $< -o $@
 
-fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR)  fclean
-	make -C $(MLX_DIR) fclean
+# clean:
+# 	rm -f $(OBJS)
 
-re: fclean all
+# fclean: clean
+# 	rm -f $(NAME)
+# 	make -C $(LIBFT_DIR)  fclean
+# 	make -C $(MLX_DIR) fclean
 
-.PHONY: all clean fclean re
+# re: fclean all
+
+# .PHONY: all clean fclean re
 
 
 chihiro:
 	cc main.c parse/*.c parse/get_next_line/*.c ./lib/Libft/libft
+#make chihiro で実行すればOK！
