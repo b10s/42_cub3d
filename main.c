@@ -6,20 +6,21 @@
  */
 int main(int argc, char **argv)
 {
+    t_map *map;
+
     if (argc != 2)
     {
-        fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
+        printf("Usage: %s <map file>\n", argv[0]);
         return (1);
     }
 
-    t_map *map = parse_map(argv[1]);
-    if (map == NULL)
-    {
-        fprintf(stderr, "Failed to parse map\n");
+    map = parse_map(argv[1]);
+    if (!map)
         return (1);
-    }
 
     print_map(map);
-    // 必要なら free_map(map) をここで呼び出してメモリ解放
+
+    free_map(map);
+    free(map);
     return (0);
 }
