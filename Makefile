@@ -11,7 +11,7 @@ MLX_LIB = $(MLX_DIR)libmlx.a
 MLX = -L$(MLX_DIR) -lmlx -lXext -lX11
 
 INC_DIR = includes
-SRC_DIR = src
+SRC_DIR = 
 SRC_FILES = main.c \
 parse/parse_map.c \
 parse/check_map_file.c \
@@ -55,3 +55,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+chihiro:
+	cc main.c parse/*.c parse/get_next_line/*.c ./lib/Libft/libft
