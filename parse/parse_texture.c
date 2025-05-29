@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "parse.h"
 
 bool parse_texture(t_map *map, char *line)
 {

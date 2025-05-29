@@ -1,5 +1,4 @@
-#include "../../includes/cub3d.h"
-
+#include "parse.h"
 static void init_map(t_map *map)
 {
     map->grid = NULL;
@@ -53,65 +52,66 @@ static bool parse_file_content(t_map *map, t_map_data *data)
     return (true);
 }
 
-int parse_map(t_game *game, char *map_path)
+
+t_map *parse_map(char *map_path)
 {
     int fd;
+    char *line;
     t_map_data data;
-    
+    t_map *map;
+
     // ファイルの存在確認と拡張子チェック
     if (check_map_file(map_path, true) != SUCCESS)
-        return (FAILURE);
-    
-    // マップ構造体の初期化
-    init_map(&game->map);
-    
+        return NULL;
+
+    // マップ構造体のメモリ確保と初期化
+    map = malloc(sizeof(t_map));
+    if (!map)
+        return NULL;
+    init_map(map);
+
+    // マップデータ用動的配列の初期化
+    init_map_data(&data);
+
     // ファイルを開く
     fd = open(map_path, O_RDONLY);
     if (fd == -1)
     {
         printf("Error\n%s: No such file or directory\n", map_path);
-        return (FAILURE);
+        free(map);
+        return NULL;
     }
-    
-    // 動的配列の初期化
-    init_map_data(&data);
-    
+
     // ファイル内容を1行ずつ読み取り、保存
-    char *line;
     while ((line = get_next_line(fd)) != NULL)
     {
         // 改行文字を削除
         int len = strlen(line);
         if (len > 0 && line[len - 1] == '\n')
             line[len - 1] = '\0';
-        
-        add_line(&data, line);
+
+        add_line(&data, line);  // 内部で strdup() などしている想定
+        free(line);             // get_next_line が malloc を使用している場合
     }
-    
     close(fd);
-    
+
     // 読み取った内容を解析
-    if (!parse_file_content(&game->map, &data))
+    if (!parse_file_content(map, &data))
     {
         free_map_data(&data);
-        return (FAILURE);
+        free_map(map);
+        return NULL;
     }
-    
+
     // マップの妥当性チェック
-    if (!validate_map(&game->map))
+    if (!validate_map(map))
     {
         free_map_data(&data);
-        return (FAILURE);
+        free_map(map);
+        return NULL;
     }
-    
-    // プレイヤー情報を設定
-    if (!find_player_position(game->map.grid, &game->player))
-    {
-        free_map_data(&data);
-        return (FAILURE);
-    }
-    
+
     free_map_data(&data);
     printf("Map file parsed successfully: %s\n", map_path);
-    return (SUCCESS);
+    return map;
 }

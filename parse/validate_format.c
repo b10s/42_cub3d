@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "parse.h"
 
 bool validate_required_elements(t_map *map)
 {

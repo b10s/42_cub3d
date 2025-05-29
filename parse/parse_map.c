@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "parse.h"
 
 bool parse_map_grid(t_map *map, t_map_data *data, int start_line)
 {

@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "parse.h"
 
 void free_map(t_map *map)
 {

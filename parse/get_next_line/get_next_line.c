@@ -6,15 +6,12 @@
 /*   By: ctokoyod <ctokoyod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:45:06 by  ctokoyod         #+#    #+#             */
-/*   Updated: 2025/05/27 23:53:17 by ctokoyod         ###   ########.fr       */
+/*   Updated: 2025/05/30 00:20:50 by ctokoyod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
-#include "../../Libft/include/libft.h"
-#include <limits.h>
-#include <fcntl.h>
-#include <sys/resource.h>
+#include "get_next_line.h"
+#include "../../lib/Libft/include/libft.h"
 
 static char	*release_memory_buffer(char *buffer)
 {

@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "parse.h"
 
 bool is_empty_line(char *line)
 {

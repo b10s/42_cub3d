@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "parse.h"
 
 static bool is_dir(char *arg)
 {
