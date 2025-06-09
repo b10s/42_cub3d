@@ -2,27 +2,24 @@
 
 bool validate_map_closed(t_map *map)
 {
-    // 各「0」と「N,S,E,W」の周囲が壁または有効なマップ領域であることを確認
-    for (int i = 0; i < map->height; i++)
+    int i;
+    int j;
+
+    i = 0;
+    while (i < map->width)
     {
-        for (int j = 0; j < map->width; j++)
-        {
-            char c = map->grid[i][j];
-            
-            if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-            {
-                // 境界チェック
-                if (i == 0 || i == map->height - 1 || j == 0 || j == map->width - 1)
-                    return (false);
-                
-                // 周囲のセルをチェック
-                if (map->grid[i-1][j] == ' ' || map->grid[i+1][j] == ' ' || 
-                    map->grid[i][j-1] == ' ' || map->grid[i][j+1] == ' ')
-                    return (false);
-            }
-        }
+        if (map->grid[0][i] != '1' || map->grid[map->height - 1][i] != '1')
+            return (false);
+        i++;
     }
-    
+
+    j = 0;
+    while (j < map->height)
+    {
+        if (map->grid[j][0] != '1' || map->grid[j][map->width - 1] != '1')
+            return (false);
+        j++;
+    }
     return (true);
 }
 
