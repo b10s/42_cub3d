@@ -48,3 +48,6 @@
 chihiro:
 	cc main.c parse/*.c parse/get_next_line/*.c ./lib/Libft/libft
 #make chihiro で実行すればOK！
+
+and:
+	cc main_andrei.c -o andrei_test
